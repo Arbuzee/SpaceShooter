@@ -8,9 +8,13 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private float damage = default;
 
-    void Start()
+    private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
         rb2d.AddForce(new Vector2(0, 500));
     }
 

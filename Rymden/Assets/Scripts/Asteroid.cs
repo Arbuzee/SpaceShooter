@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    private Rigidbody2D rb2d;
+
     private float health;
     [SerializeField] private float maxHealth = 100;
 
     [SerializeField] private ParticleSystem hitParticle;
     [SerializeField] private ParticleSystem deathParticle;
+
+    private void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
@@ -22,6 +29,16 @@ public class Asteroid : MonoBehaviour
             //other.GetComponent<PlayerVariables>().TakeDamage();
             Debug.Log("Player Hit by asteroid");
         }
+    }
+
+    public void SetVelocity()
+    {
+        rb2d.AddForce(new Vector2(0, 500));
+    }
+
+    public void SetRandomVelocity(float range)
+    {
+        rb2d.AddForce(new Vector2(Random.Range(-range, range), Random.Range(-range, range)));
     }
 
     public void TakeDamage(float dmg)
