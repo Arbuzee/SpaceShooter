@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4122447718087082695}
   - component: {fileID: 4122447718087082692}
   m_Layer: 0
-  m_Name: Asteroid
-  m_TagString: Untagged
+  m_Name: AsteroidSmall
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,8 +86,8 @@ MonoBehaviour:
   maxHealth: 100
   hitParticle: {fileID: 4228862180867260909, guid: fa4273d21f61f2342aa2ad8149b853c1, type: 3}
   deathParticle: {fileID: 6347847716939219871, guid: 9d69e91645390764f9d79def6ef72675, type: 3}
-  asteroid: {fileID: 4122447718087082690, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
-  spawnOnDeath: 1
+  asteroid: {fileID: 4122447718087082690}
+  spawnOnDeath: 0
 --- !u!1001 &6162078810281767242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +138,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 56ea6fbed8cae6e4aba010143e6be966, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 56ea6fbed8cae6e4aba010143e6be966, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 56ea6fbed8cae6e4aba010143e6be966, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 56ea6fbed8cae6e4aba010143e6be966, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 56ea6fbed8cae6e4aba010143e6be966, type: 3}
       propertyPath: m_Materials.Array.data[0]

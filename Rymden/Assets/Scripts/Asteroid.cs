@@ -12,6 +12,10 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private ParticleSystem hitParticle;
     [SerializeField] private ParticleSystem deathParticle;
 
+    [SerializeField] private GameObject asteroid;
+    [SerializeField] private bool spawnOnDeath;
+
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -61,6 +65,9 @@ public class Asteroid : MonoBehaviour
     private void Death()
     {
         Instantiate(deathParticle, transform.position, Quaternion.identity);
+
+        if (spawnOnDeath)
+            Instantiate(asteroid, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }

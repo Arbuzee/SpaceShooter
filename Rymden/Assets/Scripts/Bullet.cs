@@ -23,6 +23,12 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<Asteroid>().TakeDamage(damage);
+            Death();
         }
+    }
+
+    private void Death()
+    {
+        Destroy(gameObject);
     }
 }
