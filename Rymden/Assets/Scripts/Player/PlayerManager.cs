@@ -48,7 +48,7 @@ public class PlayerManager : MonoBehaviour
             if (timeSinceFire >= fireRate)
             {
                 timeSinceFire = 0f;
-                Instantiate(bullet, transform.position, Quaternion.Euler(_playerModel.transform.rotation.eulerAngles));
+                Instantiate(bullet, transform.position, Quaternion.Euler(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position));
             }
         }
     }

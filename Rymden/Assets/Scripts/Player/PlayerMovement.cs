@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region Speed Breaker
         //Velocity Break
-        if (Input.GetAxis("Horizontal") == 0)       //If no input slow player down
+        /*if (Input.GetAxis("Horizontal") == 0)       //If no input slow player down
         {
             _playerRB.AddForce(-transform.right * (_playerRB.velocity.x * slowDown));
         }
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") == 0)         //If no input slow player down
         {
             _playerRB.AddForce(-transform.up * (_playerRB.velocity.y * slowDown));
-        }
+        }*/
 
         #endregion
 
@@ -103,13 +103,18 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerLook()
     {
+
         Vector3 worldPos;
         Vector3 mousePos = Input.mousePosition;                     //Gets mouse pos
         worldPos = _playerCamera.ScreenToWorldPoint(mousePos);      //Converts mouse pos to world pos
 
+        /*
         _playerLookpoint.transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
 
         _playerModel.transform.LookAt(_playerLookpoint.transform.position);     //Turns player to mouse
         _playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
+        */
+
+        transform.forward = -(new Vector3(worldPos.x, worldPos.y, 20) - transform.position);
     }
 }

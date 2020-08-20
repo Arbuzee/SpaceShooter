@@ -15,7 +15,8 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rotate();
+        if (target != null)
+            Rotate();
 
         timeSinceFire += Time.deltaTime;
 
@@ -34,6 +35,5 @@ public class Turret : MonoBehaviour
     private void Rotate()
     {
         transform.right = target.transform.position - transform.position;
-        //transform.Rotate(new Vector3(0,0,90));
     }
 }

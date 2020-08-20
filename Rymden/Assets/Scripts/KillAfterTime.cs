@@ -14,5 +14,6 @@ public class KillAfterTime : MonoBehaviour
     private IEnumerator Kill()
     {
         yield return new WaitForSeconds(aliveForSeconds);
+        Destroy(gameObject);
     }
 }

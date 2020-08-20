@@ -10,7 +10,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float spawnRate = default;
     [SerializeField] private GameObject[] enemies = default;
 
-    [SerializeField] private float spawnRadius = default;
+    [SerializeField] private float minSpawnRadius = default;
+    [SerializeField] private float maxSpawnRadius = default;
 
     private float timeSinceSpawn = 0f;
 
@@ -28,10 +29,10 @@ public class Spawner : MonoBehaviour
             int spawnIndex = SelectEnemyToSpawn();
             GameObject go = Instantiate(
                 enemies[spawnIndex], 
-                GenerateSpawnPosition(), 
+                GenerateSpawnPosition() + player.transform.position, 
                 GenerateQuaternion());
 
-            if (spawnIndex == 1)
+            if (spawnIndex == 0)
             {
                 go.GetComponent<Turret>().SetPlayer(player);
             }
@@ -45,7 +46,10 @@ public class Spawner : MonoBehaviour
 
     private Vector3 GenerateSpawnPosition()
     {
-        return new Vector3(Random.Range(-spawnRadius, spawnRadius), Random.Range(-spawnRadius, spawnRadius), 0); ;
+        return new Vector3(
+            Random.Range(-Random.Range(-maxSpawnRadius, minSpawnRadius), Random.Range(-minSpawnRadius, maxSpawnRadius)), 
+            Random.Range(-Random.Range(-maxSpawnRadius, minSpawnRadius), Random.Range(-minSpawnRadius, maxSpawnRadius)), 
+            0); ;
     }
 
     private Quaternion GenerateQuaternion()

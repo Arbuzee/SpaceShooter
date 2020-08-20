@@ -49,10 +49,10 @@ public class RaritySpawn : MonoBehaviour
 
     private void Update()
     {
-        if (_astroidInfo.spawnOnDeath)
+        /*if (_astroidInfo.spawnOnDeath)
         {
 
-        }
+        }*/
     }
 
     void Decide()
