@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] private GameObject player = default;
+
+    [Header("Time between enemy spawns")]
     [SerializeField] private float spawnRate = default;
-    [SerializeField] private GameObject asteroid = default;
+    [SerializeField] private GameObject[] enemies = default;
 
     [SerializeField] private float spawnRadius = default;
 
@@ -13,16 +16,31 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        timeSinceSpawn += Time.deltaTime;
+        spawnRate -= Time.deltaTime * 0.001f; // Make it increase with score maybe?
 
+        Debug.Log(spawnRate);
+
+        timeSinceSpawn += Time.deltaTime;
         if (timeSinceSpawn >= spawnRate)
         {
             timeSinceSpawn = 0;
 
-            GameObject go = Instantiate(asteroid, GenerateSpawnPosition(), GenerateQuaternion());
-            go.GetComponent<Asteroid>().SetRandomVelocity(100f);
-            
+            int spawnIndex = SelectEnemyToSpawn();
+            GameObject go = Instantiate(
+                enemies[spawnIndex], 
+                GenerateSpawnPosition(), 
+                GenerateQuaternion());
+
+            if (spawnIndex == 1)
+            {
+                go.GetComponent<Turret>().SetPlayer(player);
+            }
         }
+    }
+
+    private int SelectEnemyToSpawn()
+    {
+        return Random.Range(0, enemies.Length);
     }
 
     private Vector3 GenerateSpawnPosition()

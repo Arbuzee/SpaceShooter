@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb2d;
 
     [SerializeField] private float damage = default;
+    [SerializeField] private bool ownedByPlayer = default;
 
     private void Awake()
     {
@@ -15,14 +16,20 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        rb2d.AddForce(new Vector2(0, 500));
+        rb2d.AddForce(transform.up * 500);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (ownedByPlayer && other.CompareTag("Enemy"))
         {
             other.GetComponent<Asteroid>().TakeDamage(damage);
+            Death();
+        }
+
+        if (!ownedByPlayer && other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerManager>().TakeDamage(damage);
             Death();
         }
     }
