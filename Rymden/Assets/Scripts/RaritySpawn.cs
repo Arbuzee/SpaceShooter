@@ -5,120 +5,79 @@ using UnityEngine;
 
 public class RaritySpawn : MonoBehaviour
 {
+    [Header("Item Relevent Variables")]
+    public int rarity;
     public Material[] rarityColor;
-    public ItemTemplateClass[] items;
-    
-    public bool debugMode = false;
-    private Asteroid _astroidInfo;
+    public GameObject spawnItem;
+
+    [Header("Nessesary stuff")]
     public MeshRenderer objectMaterial;
 
-    [SerializeField] int _powerupIndex = default;
-    [SerializeField] int _rarityRandom;
-    [SerializeField] int _rarity;
-
+    int _rarityRandom;
+    Asteroid _asteroidObject;
 
     private void Awake()
     {
-        _powerupIndex = Random.Range(0, 2);
-        _rarityRandom = Random.Range(0, 100);
-        _astroidInfo = transform.GetComponent<Asteroid>();
+        _asteroidObject = transform.GetComponent<Asteroid>();
+        _rarityRandom = Random.Range(0, 10);
 
         //Kan optimeras sen
         #region Rarity Gamble
-        if (_rarityRandom > 40)       //Common
+        if (_rarityRandom > 4)       //Common
         {
             Debug.Log("Common");
-            _rarity = 0;
+            rarity = 0;
         }
 
-        if (_rarityRandom <= 40 && _rarityRandom > 10)        //Rare
+        if (_rarityRandom <= 4 && _rarityRandom > 1)        //Rare
         {
             Debug.Log("Rare");
-            _rarity = 1;
+            rarity = 1;
         }
 
-        if (_rarityRandom <= 10)                              //Legendary
+        if (_rarityRandom <= 1)                              //Legendary
         {
             Debug.Log("Legendary");
-            _rarity = 2;
+            rarity = 2;
         }
 
         Decide();
         #endregion
     }
 
-    private void Update()
-    {
-        /*if (_astroidInfo.spawnOnDeath)
-        {
-
-        }*/
-    }
-
     void Decide()
     {
-        switch (_powerupIndex)  //Choos an ability
+        switch (rarity)    //Choose rarity
         {
-            #region Ability 1
-            case 0:
+            case 0:     //Common
                 {
-                    #region Rarity
-
-                    switch (_rarity)    //Choose rarity
-                    {
-                        case 0:     //Common
-                            {
-                                objectMaterial.material = rarityColor[0];
-                                break;
-                            }
-
-                        case 1:     //Rare
-                            {
-                                objectMaterial.material = rarityColor[1];
-                                break;
-                            }
-
-                        case 2:     //Legendery
-                            {
-                                objectMaterial.material = rarityColor[2];
-                                break;
-                            }
-                    }
-
-                    return;
-                    #endregion
+                    objectMaterial.material = rarityColor[0];
+                    break;
                 }
-            #endregion
 
-            #region Ability 2
-            case 1:
+            case 1:     //Rare
                 {
-                    #region Rarity
-                    switch (_rarity)    //Choose rarity
-                    {
-                        case 0:     //Common
-                            {
-                                objectMaterial.material = rarityColor[0];
-                                break;
-                            }
-
-                        case 1:     //Rare
-                            {
-                                objectMaterial.material = rarityColor[1];
-                                break;
-                            }
-
-                        case 2:     //Legendery
-                            {
-                                objectMaterial.material = rarityColor[2];
-                                break;
-                            }
-                    }
-                    return;
-                    #endregion
+                    objectMaterial.material = rarityColor[1];
+                    break;
                 }
-                #endregion
+
+            case 2:     //Legendery
+                {
+                    objectMaterial.material = rarityColor[2];
+                    break;
+                }
         }
-
+        return;
     }
+
+    public void SpawnItem(bool spawn)
+    {
+        if (spawn)
+        {
+            Debug.Log("Spawned a item");
+            GameObject _itemClone = Instantiate(spawnItem, transform.position, transform.rotation);
+            _itemClone.GetComponent<Ability>().Awake(rarity);
+        }
+    }
+
 }

@@ -6,7 +6,7 @@ public class Asteroid : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
-    private float health;
+    [SerializeField] public float health;
     [SerializeField] private float maxHealth = 100f;
 
     [Tooltip("Amount of damage to deal when colliding with a player")]
@@ -56,6 +56,10 @@ public class Asteroid : MonoBehaviour
 
         if (health <= 0)
         {
+            if(transform.GetComponent<RaritySpawn>() != null)
+            {
+                transform.GetComponent<RaritySpawn>().SpawnItem(true);
+            }
             Death();
         }
     }
