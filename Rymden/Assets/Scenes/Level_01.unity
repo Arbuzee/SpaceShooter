@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &578591646 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2361689731114609091, guid: a65aac37aed299f43be7fba63b0a8a57, type: 3}
+  m_PrefabInstance: {fileID: 621849647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &621849647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,9 +135,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2361689731114609088, guid: a65aac37aed299f43be7fba63b0a8a57, type: 3}
+      propertyPath: _playerCamera
+      value: 
+      objectReference: {fileID: 1952615454}
     - target: {fileID: 2361689731114609089, guid: a65aac37aed299f43be7fba63b0a8a57, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361689731114609089, guid: a65aac37aed299f43be7fba63b0a8a57, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361689731114609090, guid: a65aac37aed299f43be7fba63b0a8a57, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2361689731114609091, guid: a65aac37aed299f43be7fba63b0a8a57, type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,6 +432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2e249d4d9710c4396a909ab2ed45ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smoothSpeed: 0.125
+  target: {fileID: 578591646}
+  smoothSpeed: 200
   offset: {x: 0, y: 0, z: -10}

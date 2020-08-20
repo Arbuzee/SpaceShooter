@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D _playerRB;
 
+    private Vector2 movement;
+
     private void Awake()
     {
         _playerRB = transform.GetComponent<Rigidbody2D>();
@@ -30,32 +32,47 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        ManageInput();
         Debug.Log(_playerRB.velocity);
         PlayerLook();
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void ManageInput()
+    {
+        movement.x = Input.GetAxis("Horizontal");      //Declares if the player goes right/left
+        movement.y = Input.GetAxis("Vertical");        //Declares if the player goes up/down
+    }
+
     void Move()
     {
-        float _x = Input.GetAxis("Horizontal");      //Declares if the player goes right/left
-        float _y = Input.GetAxis("Vertical");        //Declares if the player goes up/down
-
-        _playerRB.AddForce(transform.right * ((_x * movementSpeed) * 2));       //Applies force right/left
-        _playerRB.AddForce(transform.up * ((_y * movementSpeed) * 2));          //Applies force up/down
+        _playerRB.AddForce(transform.right * ((movement.x * movementSpeed) * 2));       //Applies force right/left
+        _playerRB.AddForce(transform.up * ((movement.y * movementSpeed) * 2));          //Applies force up/down
 
         #region Player Speed
 
         #region Max Speed Manager
         //Speed capper
-        if (_playerRB.velocity.x > maxVelocity && _x != -1 || _playerRB.velocity.x < (maxVelocity * -1) && _x != 1) //If the player moves too fast to the right/left
+       
+        if (_playerRB.velocity.sqrMagnitude > maxVelocity) //If the player moves too fast to the right/left
         {
-            _playerRB.AddForce(-transform.right * ((_x * movementSpeed) * 2));
+            _playerRB.AddForce(_playerRB.velocity.normalized * ((movement.x * movementSpeed) * 2));
         }
 
-        if (_playerRB.velocity.y > maxVelocity && _y != -1 || _playerRB.velocity.y < (maxVelocity * -1) && _y != 1) //If the player moves too fast to the right/left
+        /*
+        if (_playerRB.velocity.x > maxVelocity && movement.x != -1 || _playerRB.velocity.x < (maxVelocity * -1) && movement.x != 1) //If the player moves too fast to the right/left
         {
-            _playerRB.AddForce(-transform.up * ((_y * movementSpeed) * 2));
+            _playerRB.AddForce(-transform.right * ((movement.x * movementSpeed) * 2));
         }
+
+        if (_playerRB.velocity.y > maxVelocity && movement.y != -1 || _playerRB.velocity.y < (maxVelocity * -1) && movement.y != 1) //If the player moves too fast to the right/left
+        {
+            _playerRB.AddForce(-transform.up * ((movement.y * movementSpeed) * 2));
+        }*/
 
         #endregion
 
