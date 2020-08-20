@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerMovemetn : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Properties")]
     public float movementSpeed;
@@ -31,12 +31,12 @@ public class PlayerMovemetn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        Move();
         Debug.Log(_playerRB.velocity);
         PlayerLook();
     }
 
-    void PlayerMovement()
+    void Move()
     {
         float _x = Input.GetAxis("Horizontal");      //Declares if the player goes right/left
         float _y = Input.GetAxis("Vertical");        //Declares if the player goes up/down

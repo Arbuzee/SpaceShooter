@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &211617139 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 330783296403793333, guid: 4f0a16dc65ea63146896c5c0e9dc9e95, type: 3}
+  m_PrefabInstance: {fileID: 2272519044250798402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1046650295
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +247,7 @@ GameObject:
   - component: {fileID: 1952615454}
   - component: {fileID: 1952615453}
   - component: {fileID: 1952615456}
+  - component: {fileID: 1952615457}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -345,6 +351,21 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1952615457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952615452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2e249d4d9710c4396a909ab2ed45ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 211617139}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1001 &2272519044250798402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -394,6 +415,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 330783296403793333, guid: 4f0a16dc65ea63146896c5c0e9dc9e95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931659230737153346, guid: 4f0a16dc65ea63146896c5c0e9dc9e95, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3460017406768840118, guid: 4f0a16dc65ea63146896c5c0e9dc9e95, type: 3}

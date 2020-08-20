@@ -9,11 +9,11 @@ public class Asteroid : MonoBehaviour
     private float health;
     [SerializeField] private float maxHealth = 100;
 
-    [SerializeField] private ParticleSystem hitParticle;
-    [SerializeField] private ParticleSystem deathParticle;
+    [SerializeField] private ParticleSystem hitParticle = default;
+    [SerializeField] private ParticleSystem deathParticle = default;
 
-    [SerializeField] private GameObject asteroid;
-    [SerializeField] private bool spawnOnDeath;
+    [SerializeField] private GameObject asteroid = default;
+    [SerializeField] private bool spawnOnDeath = default;
 
 
     private void Awake()

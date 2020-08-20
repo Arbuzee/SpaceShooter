@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BoosterSpawner : MonoBehaviour
 {
-    [SerializeField] private Transform[] boosterSpawners;
-    [SerializeField] private GameObject[] boosters;
+    [SerializeField] private Transform[] boosterSpawners = default;
+    [SerializeField] private GameObject[] boosters = default;
 
     void Start()
     {
