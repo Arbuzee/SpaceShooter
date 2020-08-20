@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     //Mouse variables
     GameObject _playerLookpoint;
     GameObject _playerModel;
-    Camera _playerCamera;
+    [SerializeField] Camera _playerCamera;
 
     Rigidbody2D _playerRB;
 
@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
         _playerRB.gravityScale = 0;                         //Turn of gravity (IN SPACE? WHAT IRON????)
         _playerLookpoint = transform.GetChild(0).gameObject;
         _playerModel = transform.GetChild(1).gameObject;
-        _playerCamera = transform.GetChild(2).GetComponent<Camera>();
     }
 
     // Update is called once per frame
