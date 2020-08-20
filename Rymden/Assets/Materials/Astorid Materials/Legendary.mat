@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_RetroNeon_Asteroid
+  m_Name: Legendary
   m_Shader: {fileID: -6465566751694194690, guid: 73fc72cab1efa8d4395cbded9181aae9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -28,5 +28,5 @@ Material:
     m_Colors:
     - Color_2CEFABC7: {r: 0, g: 31.999996, b: 31.178043, a: 0}
     - Color_F3D64BA7: {r: 0, g: 0, b: 0, a: 0}
-    - _EmissionColor: {r: 0, g: 5.163983, b: 3.4670346, a: 5}
+    - _EmissionColor: {r: 6.6753926, g: 5.5342264, b: 0, a: 5}
   m_BuildTextureStacks: []
