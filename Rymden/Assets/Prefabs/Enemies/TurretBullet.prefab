@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
-  ownedByPlayer: 1
 --- !u!1 &5110904092090172695
 GameObject:
   m_ObjectHideFlags: 0

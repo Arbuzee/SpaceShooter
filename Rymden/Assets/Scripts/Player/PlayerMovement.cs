@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ManageInput();
-        Debug.Log(_playerRB.velocity);
+        //Debug.Log(_playerRB.velocity.sqrMagnitude);
         PlayerLook();
     }
 
@@ -50,17 +50,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        /*
         _playerRB.AddForce(transform.right * ((movement.x * movementSpeed) * 2));       //Applies force right/left
         _playerRB.AddForce(transform.up * ((movement.y * movementSpeed) * 2));          //Applies force up/down
-
+        */
         #region Player Speed
 
         #region Max Speed Manager
         //Speed capper
-       
+
+        // velocity.x > 0 höger , < 0 vänster
+        // velocity.y > 0 upp, < 0 ner
+
+
         if (_playerRB.velocity.sqrMagnitude > maxVelocity) //If the player moves too fast to the right/left
         {
-            _playerRB.AddForce(_playerRB.velocity.normalized * ((movement.x * movementSpeed) * 2));
+            _playerRB.AddForce(-_playerRB.velocity.normalized * movementSpeed * 5);
+        } else
+        {
+            _playerRB.AddForce(movement * movementSpeed);       //Applies force right/left
         }
 
         /*
@@ -102,5 +110,6 @@ public class PlayerMovement : MonoBehaviour
         _playerLookpoint.transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
 
         _playerModel.transform.LookAt(_playerLookpoint.transform.position);     //Turns player to mouse
+        _playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
     }
 }

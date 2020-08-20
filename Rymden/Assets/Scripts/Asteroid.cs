@@ -24,6 +24,8 @@ public class Asteroid : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+
+        SetRandomVelocity(Random.Range(10, 500));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
