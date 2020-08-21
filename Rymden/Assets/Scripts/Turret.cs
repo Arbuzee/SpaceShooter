@@ -6,13 +6,27 @@ public class Turret : MonoBehaviour
 {
     [SerializeField] private GameObject target = default;
 
+    [SerializeField] public float health;
+    [SerializeField] private float maxHealth = 100f;
+
+    [Tooltip("Amount of damage to deal when colliding with a player")]
+    [SerializeField] private float damage = 10f;
+
     [SerializeField] private float fireRate = default;
     private float timeSinceFire = 0f;
 
 
     [SerializeField] private GameObject bullet = default;
 
-    // Update is called once per frame
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerManager>().TakeDamage(damage);
+            Debug.Log("Player Hit by asteroid");
+        }
+    }
+    
     void Update()
     {
         if (target != null)
