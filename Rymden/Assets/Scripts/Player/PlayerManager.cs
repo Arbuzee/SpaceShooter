@@ -7,6 +7,11 @@ public class PlayerManager : MonoBehaviour
     GameObject _player;
     MeshRenderer _playerMaterial;
     GameObject _playerModel;
+    GameObject _playerLookPoint;
+
+    [SerializeField] private Transform firePointLeft = default;
+    [SerializeField] private Transform firePointRight = default;
+    private bool hasFiredFromLeft = false;
 
     private float health;
     [Header("Player Properties")]
@@ -28,6 +33,7 @@ public class PlayerManager : MonoBehaviour
         _playerMaterial = _player.GetComponent<MeshRenderer>();
 
         _playerModel = transform.GetChild(1).gameObject;
+        _playerLookPoint = transform.GetChild(0).gameObject;
     }
     
     private void Start()
@@ -48,7 +54,29 @@ public class PlayerManager : MonoBehaviour
             if (timeSinceFire >= fireRate)
             {
                 timeSinceFire = 0f;
-                Instantiate(bullet, transform.position, Quaternion.Euler(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position));
+
+                firePointLeft.right = _playerLookPoint.transform.position - transform.position;
+                firePointRight.right = _playerLookPoint.transform.position - transform.position;
+
+                if (hasFiredFromLeft)
+                {
+                    Instantiate(
+                        bullet,
+                        firePointRight.transform.position,
+                        Quaternion.Euler(firePointRight.transform.position));
+                }
+                else
+                {
+                    Instantiate(
+                        bullet,
+                        firePointLeft.transform.position,
+                        Quaternion.Euler(firePointLeft.transform.position));
+                }
+                
+
+
+                Debug.DrawLine(transform.position, transform.position + (_playerLookPoint.transform.position - transform.position).normalized * 10, Color.red, Mathf.Infinity);
+                hasFiredFromLeft = !hasFiredFromLeft;
             }
         }
     }

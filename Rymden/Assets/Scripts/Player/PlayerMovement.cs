@@ -115,6 +115,6 @@ public class PlayerMovement : MonoBehaviour
         _playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
         */
 
-        transform.forward = -(new Vector3(worldPos.x, worldPos.y, 20) - transform.position);
+        transform.forward = -(new Vector3(worldPos.x, worldPos.y, 32) - transform.position);
     }
 }

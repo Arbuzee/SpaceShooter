@@ -13,13 +13,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float minSpawnRadius = default;
     [SerializeField] private float maxSpawnRadius = default;
 
+    [SerializeField] private Transform[] spawnPositions = default;
+
     private float timeSinceSpawn = 0f;
 
     private void Update()
     {
         spawnRate -= Time.deltaTime * 0.001f; // Make it increase with score maybe?
 
-        Debug.Log(spawnRate);
+        //Debug.Log(spawnRate);
 
         timeSinceSpawn += Time.deltaTime;
         if (timeSinceSpawn >= spawnRate)
@@ -46,10 +48,7 @@ public class Spawner : MonoBehaviour
 
     private Vector3 GenerateSpawnPosition()
     {
-        return new Vector3(
-            Random.Range(-Random.Range(-maxSpawnRadius, minSpawnRadius), Random.Range(-minSpawnRadius, maxSpawnRadius)), 
-            Random.Range(-Random.Range(-maxSpawnRadius, minSpawnRadius), Random.Range(-minSpawnRadius, maxSpawnRadius)), 
-            0); ;
+        return spawnPositions[Random.Range(0, spawnPositions.Length)].position;
     }
 
     private Quaternion GenerateQuaternion()
