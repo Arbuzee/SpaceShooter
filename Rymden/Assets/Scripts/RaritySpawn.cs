@@ -14,6 +14,7 @@ public class RaritySpawn : MonoBehaviour
     public MeshRenderer objectMaterial;
 
     int _rarityRandom;
+    bool _itemIsLegendary = false;
     Asteroid _asteroidObject;
 
     private void Awake()
@@ -64,6 +65,7 @@ public class RaritySpawn : MonoBehaviour
             case 2:     //Legendery
                 {
                     objectMaterial.material = rarityColor[2];
+                    _itemIsLegendary = true;
                     break;
                 }
         }
@@ -76,7 +78,7 @@ public class RaritySpawn : MonoBehaviour
         {
             Debug.Log("Spawned a item");
             GameObject _itemClone = Instantiate(spawnItem, transform.position, transform.rotation);
-            _itemClone.GetComponent<Ability>().Awake(rarity);
+            _itemClone.GetComponent<Ability>().ItemFunction(rarity);
         }
     }
 

@@ -108,9 +108,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;                     //Gets mouse pos
         worldPos = _playerCamera.ScreenToWorldPoint(mousePos);      //Converts mouse pos to world pos
 
-        /*
-        _playerLookpoint.transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
+        _playerLookpoint.transform.position = new Vector3(worldPos.x, worldPos.y, 0f);
 
+        /*
         _playerModel.transform.LookAt(_playerLookpoint.transform.position);     //Turns player to mouse
         _playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
         */
