@@ -13,8 +13,14 @@ public class Ability : MonoBehaviour
     public Image imageObject;
     public Color[] imageColor;
 
-    [Header("Debug")]
-    int _itemType;
+    [Header("Debug Menu")]
+    public bool debugMode = false;
+    [Tooltip("0: Shield\n1: Multishot\n2: Granade\n")]
+    public int itemIndexDebug;
+    [Tooltip("0: Common\n1: Rare\n2: Legendary")]
+    public int rarityDebug;
+
+    [Header("Stats")]
     [Tooltip("0: Shield\n1: Mulitshot")]
     [SerializeField] int _itemIndex;
     [Tooltip("0: Common\n1: Rare\n2: Legendary")]
@@ -25,9 +31,18 @@ public class Ability : MonoBehaviour
 
     public void Awake()
     {
-        Destroy(transform.gameObject, _destroyTime);
-        _itemType = Random.Range(0, itemProperties.Length);
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAbilities>();
+        if (debugMode)
+        {
+            _itemIndex = itemIndexDebug;     //Chooses ability while debuging
+            _itemRarity = rarityDebug;       //Chooses rarity whlie debuging
+            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAbilities>();
+            ApplyAssets(true);
+        }
+        else
+        {
+            Destroy(transform.gameObject, _destroyTime);
+            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAbilities>();
+        }
     }
 
     public void ItemFunction(int raryity)

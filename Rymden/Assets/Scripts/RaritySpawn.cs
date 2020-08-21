@@ -73,7 +73,7 @@ public class RaritySpawn : MonoBehaviour
     {
         if (spawn)
         {
-            GameObject _itemClone = Instantiate(spawnItem, transform.position, transform.rotation);
+            GameObject _itemClone = Instantiate(spawnItem, transform.position, new Quaternion(0f, 0f, 0f, 0f));
             _itemClone.GetComponent<Ability>().ItemFunction(rarity);
         }
     }

@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         #region Speed Breaker
         //Velocity Break
+        /*
         if (Input.GetAxis("Horizontal") == 0)       //If no input slow player down
         {
             _playerRB.AddForce(-transform.right * (_playerRB.velocity.x * slowDown));
@@ -95,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerRB.AddForce(-transform.up * (_playerRB.velocity.y * slowDown));
         }
-
+        */
         #endregion
 
         #endregion

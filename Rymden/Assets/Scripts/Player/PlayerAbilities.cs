@@ -37,10 +37,10 @@ public class PlayerAbilities : MonoBehaviour
         if (activateAbility)
         {
             abilityIcon.color = new Color(abilityIcon.color.r, abilityIcon.color.g, abilityIcon.color.b, 0.5f);     //Fades UI icon
+            abilityIcon.fillAmount -= (1f / activationTime) * Time.deltaTime; //Drain the hud image to display the timer
 
             if (_tempSheildClone != null)
             {
-                abilityIcon.fillAmount -= (1f / activationTime) * Time.deltaTime; //Drain the hud image to display the timer
                 TrackPlayer(_tempSheildClone);
             }
         }
@@ -60,20 +60,20 @@ public class PlayerAbilities : MonoBehaviour
                         {
                             case 0:
                                 {
-                                    _shieldClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Color_B8352066", Color.white);
+                                    _shieldClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Color_B8352066", Color.white * 10);
                                     break;
                                 }
 
                             case 1:
                                 {
-                                    _shieldClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Color_B8352066", Color.green);
+                                    _shieldClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Color_B8352066", Color.green * 10);
                                     break;
                                 }
 
                             case 2:
                                 {
-                                    _shieldClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Color_B8352066", Color.yellow);
-                                    //Active special abilty
+                                    _shieldClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Color_B8352066", Color.yellow * 10);
+                                    _shieldClone.AddComponent<LegendarySheild>();
                                     break;
                                 }
                         }
@@ -97,17 +97,17 @@ public class PlayerAbilities : MonoBehaviour
                             //Active special abilty
                         }
 
-                        else
-                        {
-                            //Multiply Shots
-                            //Drain the hud image to display the timer
-                        }
+                        //Multiply Shots
+                        //Drain the hud image to display the timer
+                        activationTime = activeTime[_activeAbilityRarity];
+                        Invoke("RemoveAbilty", activationTime);
 
                         break;
                     }
                     #endregion
             }
         }
+
     }
 
     void TrackPlayer(GameObject _trackObject)

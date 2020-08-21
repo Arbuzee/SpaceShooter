@@ -19,6 +19,22 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 01226fe71c3180c409dd5fb184340cda, type: 2}
   spawnItem: {fileID: 1401521107353676146, guid: 4b8ff756448306d49bfb82e573b829be, type: 3}
   objectMaterial: {fileID: 9221615362367709378}
+--- !u!58 &1957871080
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275914982025969943}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.000000014901161}
+  serializedVersion: 2
+  m_Radius: 0.17888544
 --- !u!1001 &4448516251686964492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28,19 +44,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4122447718087082690, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_Name
-      value: AsteroidPowerup
+      value: AsteroidPowerup Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082692, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: asteroidSize
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4122447718087082692, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
+      propertyPath: minVelocity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4122447718087082692, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
+      propertyPath: maxVelocity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082693, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -131.07
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082693, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.06
+      value: 7.28
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082693, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,6 +107,11 @@ PrefabInstance:
 --- !u!1 &326983408899706830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4122447718087082690, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
+  m_PrefabInstance: {fileID: 4448516251686964492}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7275914982025969943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6432675006815357979, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
   m_PrefabInstance: {fileID: 4448516251686964492}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &9221615362367709378 stripped

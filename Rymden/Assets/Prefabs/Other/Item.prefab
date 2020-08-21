@@ -214,6 +214,9 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.037148237, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.8258381, b: 0, a: 1}
+  debugMode: 0
+  itemIndexDebug: 0
+  rarityDebug: 0
   _itemIndex: 0
   _itemRarity: 0
   _rarityName: 
