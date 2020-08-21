@@ -26,19 +26,16 @@ public class RaritySpawn : MonoBehaviour
         #region Rarity Gamble
         if (_rarityRandom > 4)       //Common
         {
-            Debug.Log("Common");
             rarity = 0;
         }
 
         if (_rarityRandom <= 4 && _rarityRandom > 1)        //Rare
         {
-            Debug.Log("Rare");
             rarity = 1;
         }
 
         if (_rarityRandom <= 1)                              //Legendary
         {
-            Debug.Log("Legendary");
             rarity = 2;
         }
 
@@ -76,7 +73,6 @@ public class RaritySpawn : MonoBehaviour
     {
         if (spawn)
         {
-            Debug.Log("Spawned a item");
             GameObject _itemClone = Instantiate(spawnItem, transform.position, transform.rotation);
             _itemClone.GetComponent<Ability>().ItemFunction(rarity);
         }

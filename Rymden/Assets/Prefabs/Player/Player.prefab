@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2361689731114609091}
   - component: {fileID: 2361689731114609088}
   - component: {fileID: 2361689731114609093}
+  - component: {fileID: 126240582084403366}
   - component: {fileID: 2361689731114609090}
   - component: {fileID: 8812828379188734738}
   m_Layer: 0
@@ -99,6 +100,18 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   bullet: {fileID: 5110904091687254315, guid: 8e1b82128671d6943b8028908037734b, type: 3}
   deathParticle: {fileID: 6347847716939219871, guid: 9d69e91645390764f9d79def6ef72675, type: 3}
+--- !u!114 &126240582084403366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361689731114609089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c558a87065841a4a955dfca94c00c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &2361689731114609090
 Rigidbody2D:
   serializedVersion: 4

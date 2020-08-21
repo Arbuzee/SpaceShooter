@@ -14,17 +14,20 @@ public class Ability : MonoBehaviour
     public Color[] imageColor;
 
     [Header("Debug")]
-    [Tooltip("1: Shield")]
-    [SerializeField] int _itemType;
+    int _itemType;
+    [Tooltip("0: Shield\n1: Mulitshot")]
     [SerializeField] int _itemIndex;
+    [Tooltip("0: Common\n1: Rare\n2: Legendary")]
     [SerializeField] int _itemRarity;
     [SerializeField] string _rarityName;
     [SerializeField] bool _isLegendary;
+    [SerializeField] PlayerAbilities _player;
 
     public void Awake()
     {
         Destroy(transform.gameObject, _destroyTime);
         _itemType = Random.Range(0, itemProperties.Length);
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAbilities>();
     }
 
     public void ItemFunction(int raryity)
@@ -64,20 +67,17 @@ public class Ability : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject _playerHud = GameObject.Find("PlayerHud");
-        Debug.Log(other.gameObject.name);
 
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && !_player.activateAbility)
         {
-            Debug.Log("Added an item");
-            Debug.Log($"Added {itemProperties[_itemIndex].name} as an ability");
             _playerHud.transform.GetChild(1).GetComponent<Image>().sprite = imageObject.sprite;
             _playerHud.transform.GetChild(1).GetComponent<Image>().color = imageObject.color;
+            _player.GetAbilityInfo(_itemIndex, _itemRarity);   
             Destroy(transform.gameObject);
         }
 
         if (other.CompareTag("Courser"))
         {
-            Debug.Log("More info displayed");
             GameObject _infoScreen = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
             _infoScreen.SetActive(true);
             _infoScreen.transform.GetChild(1).GetComponent<Text>().text = itemProperties[_itemIndex].name.ToUpper();            //Title
@@ -91,7 +91,6 @@ public class Ability : MonoBehaviour
     {
         if (other.CompareTag("Courser"))
         {
-            Debug.Log("Removing display");
             GameObject _infoScreen = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
             _infoScreen.SetActive(false);
         }
