@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public bool playerIsBoosting;
 
     //Mouse variables
-    GameObject _playerLookpoint;
+    [SerializeField]GameObject _playerLookpoint;
     GameObject _playerModel;
     [SerializeField] Camera _playerCamera;
 
@@ -23,8 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        _playerCamera = Camera.main;
         _playerRB = transform.GetComponent<Rigidbody2D>();
-        _playerRB.gravityScale = 0;                         //Turn of gravity (IN SPACE? WHAT IRON????)
+        _playerRB.gravityScale = 0;                         //Turn of gravity
         _playerLookpoint = transform.GetChild(0).gameObject;
         _playerModel = transform.GetChild(1).gameObject;
     }
@@ -32,9 +33,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerLook();
         ManageInput();
         //Debug.Log(_playerRB.velocity.sqrMagnitude);
-        PlayerLook();
     }
 
     private void FixedUpdate()
@@ -104,18 +105,16 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerLook()
     {
-
         Vector3 worldPos;
         Vector3 mousePos = Input.mousePosition;                     //Gets mouse pos
         worldPos = _playerCamera.ScreenToWorldPoint(mousePos);      //Converts mouse pos to world pos
+        Debug.Log(worldPos);
 
         _playerLookpoint.transform.position = new Vector3(worldPos.x, worldPos.y, 0f);
 
-        /*
         _playerModel.transform.LookAt(_playerLookpoint.transform.position);     //Turns player to mouse
-        _playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
-        */
-
-        transform.forward = -(new Vector3(worldPos.x, worldPos.y, 32) - transform.position);
+        //_playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
+        
+        //transform.forward = -(new Vector3(worldPos.x, worldPos.y, 32) - transform.position);
     }
 }

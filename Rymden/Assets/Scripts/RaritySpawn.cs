@@ -14,7 +14,6 @@ public class RaritySpawn : MonoBehaviour
     public MeshRenderer objectMaterial;
 
     int _rarityRandom;
-    bool _itemIsLegendary = false;
     Asteroid _asteroidObject;
 
     private void Awake()
@@ -22,7 +21,7 @@ public class RaritySpawn : MonoBehaviour
         _asteroidObject = transform.GetComponent<Asteroid>();
         _rarityRandom = Random.Range(0, 10);
 
-        //Kan optimeras sen
+        //Kan optimeras senare
         #region Rarity Gamble
         if (_rarityRandom > 4)       //Common
         {
@@ -62,7 +61,6 @@ public class RaritySpawn : MonoBehaviour
             case 2:     //Legendery
                 {
                     objectMaterial.material = rarityColor[2];
-                    _itemIsLegendary = true;
                     break;
                 }
         }

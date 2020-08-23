@@ -8,5 +8,6 @@ public class ItemClass
 {
     public Sprite itemImage;
     public string name = default; [TextArea(2, 5)] public string description = default;
+    public string specialPower;
     [HideInInspector] public bool isLegendary;
 }

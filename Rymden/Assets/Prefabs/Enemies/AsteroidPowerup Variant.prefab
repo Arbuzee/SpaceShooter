@@ -44,7 +44,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4122447718087082690, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_Name
-      value: AsteroidPowerup Variant
+      value: AsteroidPowerup Variant (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082692, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: asteroidSize
@@ -56,15 +56,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082692, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: maxVelocity
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082693, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -131.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082693, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4122447718087082693, guid: 6d64b59902e7c344595c66e47ea520fe, type: 3}
       propertyPath: m_LocalPosition.z

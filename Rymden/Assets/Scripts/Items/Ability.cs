@@ -15,10 +15,10 @@ public class Ability : MonoBehaviour
 
     [Header("Debug Menu")]
     public bool debugMode = false;
-    [Tooltip("0: Shield\n1: Multishot\n2: Granade\n")]
-    public int itemIndexDebug;
+    [Tooltip("0: Shield\n1: Tracking Bombs\n")]
+    [Range(0, 1)]public int itemIndexDebug;
     [Tooltip("0: Common\n1: Rare\n2: Legendary")]
-    public int rarityDebug;
+    [Range(0, 2)]public int rarityDebug;
 
     [Header("Stats")]
     [Tooltip("0: Shield\n1: Mulitshot")]
@@ -26,7 +26,6 @@ public class Ability : MonoBehaviour
     [Tooltip("0: Common\n1: Rare\n2: Legendary")]
     [SerializeField] int _itemRarity;
     [SerializeField] string _rarityName;
-    [SerializeField] bool _isLegendary;
     [SerializeField] PlayerAbilities _player;
 
     public void Awake()
@@ -74,19 +73,18 @@ public class Ability : MonoBehaviour
             case 2:
                 {
                     _rarityName = "Legendary";
-                    _isLegendary = true;
                     break;
                 }
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject _playerHud = GameObject.Find("PlayerHud");
+        GameObject _playerHud = GameObject.Find("PlayerHud").transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
 
         if(other.CompareTag("Player") && !_player.activateAbility)
         {
-            _playerHud.transform.GetChild(1).GetComponent<Image>().sprite = imageObject.sprite;
-            _playerHud.transform.GetChild(1).GetComponent<Image>().color = imageObject.color;
+            _playerHud.GetComponent<Image>().sprite = imageObject.sprite;
+            _playerHud.GetComponent<Image>().color = imageObject.color;
             _player.GetAbilityInfo(_itemIndex, _itemRarity);   
             Destroy(transform.gameObject);
         }
@@ -96,9 +94,19 @@ public class Ability : MonoBehaviour
             GameObject _infoScreen = transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
             _infoScreen.SetActive(true);
             _infoScreen.transform.GetChild(1).GetComponent<Text>().text = itemProperties[_itemIndex].name.ToUpper();            //Title
-            _infoScreen.transform.GetChild(3).GetComponent<Text>().text = $"<i>{itemProperties[_itemIndex].description}</i>";   //Discripton
             _infoScreen.transform.GetChild(2).GetComponent<Text>().text = $"<b>{_rarityName}</b>";                              //Rarity
-            _infoScreen.transform.GetChild(2).GetComponent<Text>().color = imageObject.color;                                   //Color of rarity
+            _infoScreen.transform.GetChild(2).GetComponent<Text>().color = imageObject.color;
+
+            if (_itemRarity == 2)
+            {
+                _infoScreen.transform.GetChild(3).GetComponent<Text>().text = $"<i>{itemProperties[_itemIndex].description}\n\n<color=yellow><b>Legendary Ability:</b></color> \n{itemProperties[_itemIndex].specialPower}</i>";   //Discripton
+
+            }
+            else
+            {
+                _infoScreen.transform.GetChild(3).GetComponent<Text>().text = $"<i>{itemProperties[_itemIndex].description}</i>";   //Discripton
+            }
+            //Color of rarity
         }
     }
 

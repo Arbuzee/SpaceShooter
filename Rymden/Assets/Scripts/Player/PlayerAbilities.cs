@@ -17,17 +17,24 @@ public class PlayerAbilities : MonoBehaviour
     public GameObject shieldObject;
     GameObject _tempSheildClone = null;
 
+    [Header("Cluster Bomb Properties")]
+    public int[] amountOfBombs;
+    public float[] survivalTime;
+    public float[] detectionRadius;
+    public GameObject projectileObject;
+    public Transform shipCannonL;
+
+    [HideInInspector] public bool activateAbility = false;
     [Header("Debug")]
-    [Tooltip("Activate abilit? True: Yes || False = No")]
-    public bool activateAbility = false;
     [Tooltip("0: Shield\n1: Multishot\n")]
     [SerializeField] int _activeAbilityIndex = -1;
     [Tooltip("0: Common\n1: Rare\n2: Legendary")]
     [SerializeField] int _activeAbilityRarity = -1;
-    [SerializeField] private float activationTime;
+    [SerializeField] private float _activationTime;
 
     void Update()
     {
+
         if (Input.GetKeyUp(KeyCode.E) && _activeAbilityIndex > -1)
         {
             activateAbility = true;
@@ -36,11 +43,10 @@ public class PlayerAbilities : MonoBehaviour
 
         if (activateAbility)
         {
-            abilityIcon.color = new Color(abilityIcon.color.r, abilityIcon.color.g, abilityIcon.color.b, 0.5f);     //Fades UI icon
-            abilityIcon.fillAmount -= (1f / activationTime) * Time.deltaTime; //Drain the hud image to display the timer
-
             if (_tempSheildClone != null)
             {
+                abilityIcon.color = new Color(abilityIcon.color.r, abilityIcon.color.g, abilityIcon.color.b, 0.5f);     //Fades UI icon
+                abilityIcon.fillAmount -= (1f / _activationTime) * Time.deltaTime; //Drain the hud image to display the timer
                 TrackPlayer(_tempSheildClone);
             }
         }
@@ -56,6 +62,7 @@ public class PlayerAbilities : MonoBehaviour
                     #region SHIELD
                     {
                         GameObject _shieldClone = Instantiate(shieldObject); //Spawn a sheild for x seconds
+                        _activationTime = activeTime[_activeAbilityRarity];
                         switch (_activeAbilityRarity)
                         {
                             case 0:
@@ -79,29 +86,44 @@ public class PlayerAbilities : MonoBehaviour
                         }
 
                         _shieldClone.transform.localScale = new Vector3(shieldSize[_activeAbilityRarity], shieldSize[_activeAbilityRarity], shieldSize[_activeAbilityRarity]);
-                        activationTime = activeTime[_activeAbilityRarity];
                         _tempSheildClone = _shieldClone;
-                        Destroy(_shieldClone, activationTime);
-                        Invoke("RemoveAbilty", activationTime);
+                        Destroy(_shieldClone, _activationTime);
+                        Invoke("RemoveAbilty", _activationTime);
                         break;
                     }
                 #endregion
 
-                case 1:     //Multishot
-                    #region MULTISHOT
+                case 1:     //Tracking Bombs
+                    #region TRACKING BOMBS
                     {
-                        if (_activeAbilityRarity == 2)      //if the item is legendary
+                        GameObject _projectileClone = Instantiate(projectileObject, shipCannonL);
+                        _projectileClone.transform.position = shipCannonL.position;
+                        _projectileClone.transform.parent = null;
+
+                        switch (_activeAbilityRarity)
                         {
-                            //Multiply Shots (timed/amount???)
-                            //Activate special ability
-                            //Active special abilty
+                            case 0:
+                                {
+                                    _projectileClone.GetComponent<CircleCollider2D>().radius = detectionRadius[0];
+                                    _projectileClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_EmissionColor", Color.white * 5);
+                                    break;
+                                }
+
+                            case 1:
+                                {
+                                    _projectileClone.GetComponent<CircleCollider2D>().radius = detectionRadius[1];
+                                    _projectileClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_EmissionColor", Color.green * 5);
+                                    break;
+                                }
+
+                            case 2:
+                                {
+                                    _projectileClone.GetComponent<CircleCollider2D>().radius = detectionRadius[2];
+                                    _projectileClone.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_EmissionColor", Color.yellow * 5);
+                                    break;
+                                }
                         }
-
-                        //Multiply Shots
-                        //Drain the hud image to display the timer
-                        activationTime = activeTime[_activeAbilityRarity];
-                        Invoke("RemoveAbilty", activationTime);
-
+                        RemoveAbilty();
                         break;
                     }
                     #endregion
@@ -119,7 +141,7 @@ public class PlayerAbilities : MonoBehaviour
     {
         switch (_activeAbilityIndex)
         {
-            case 0:
+            case 0:     //Shield
                 {
                     _tempSheildClone = null;
                     break;

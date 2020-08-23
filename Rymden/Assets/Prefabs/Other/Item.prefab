@@ -203,10 +203,12 @@ MonoBehaviour:
   - itemImage: {fileID: 21300000, guid: b0cfe6ad8c2be564cbda0e83ae1ff1df, type: 3}
     name: Shield
     description: Blocks incoming damage
+    specialPower: Destroy astroids on touch
     isLegendary: 0
-  - itemImage: {fileID: 21300000, guid: f347d5300f6d43c4e86fcca952bccf38, type: 3}
-    name: Multishot
-    description: Makes you shoot multible shots at once
+  - itemImage: {fileID: 21300000, guid: 97d9c3651de3d3a4fb9816eeffd33e13, type: 3}
+    name: Target Bombs
+    description: Tracks astroids and destroys them
+    specialPower: Spawns new bombs upon hit
     isLegendary: 0
   _destroyTime: 15
   imageObject: {fileID: 1401521109281111232}
@@ -215,12 +217,11 @@ MonoBehaviour:
   - {r: 0.037148237, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.8258381, b: 0, a: 1}
   debugMode: 0
-  itemIndexDebug: 0
-  rarityDebug: 0
+  itemIndexDebug: 1
+  rarityDebug: 2
   _itemIndex: 0
   _itemRarity: 0
   _rarityName: 
-  _isLegendary: 0
   _player: {fileID: 0}
 --- !u!58 &-1605658901580230232
 CircleCollider2D:
@@ -422,7 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956884911726475090}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Extra information
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +599,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 203
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

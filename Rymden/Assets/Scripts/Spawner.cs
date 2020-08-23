@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
         {
             timeSinceSpawn = 0;
 
-            int spawnIndex = SelectEnemyToSpawn();
+            int spawnIndex = SelectEnemyToSpawn(); 
             GameObject go = Instantiate(
                 enemies[spawnIndex], 
                 GenerateSpawnPosition() + player.transform.position, 
