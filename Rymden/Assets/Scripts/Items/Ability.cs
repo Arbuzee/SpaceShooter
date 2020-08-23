@@ -79,7 +79,7 @@ public class Ability : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject _playerHud = GameObject.Find("PlayerHud").transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
+        GameObject _playerHud = GameObject.Find("PlayerHud").transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).gameObject;
 
         if(other.CompareTag("Player") && !_player.activateAbility)
         {

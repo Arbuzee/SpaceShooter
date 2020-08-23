@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
         _playerLookpoint.transform.position = new Vector3(worldPos.x, worldPos.y, 0f);
 
-        _playerModel.transform.LookAt(_playerLookpoint.transform.position);     //Turns player to mouse
+        //_playerModel.transform.LookAt(_playerLookpoint.transform.position);     //Turns player to mouse
         //_playerModel.transform.rotation = Quaternion.Euler(new Vector3(_playerModel.transform.rotation.x, 180, 0));
         
         //transform.forward = -(new Vector3(worldPos.x, worldPos.y, 32) - transform.position);
